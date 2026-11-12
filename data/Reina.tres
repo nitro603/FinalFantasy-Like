@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://d3kjmc6wbt5u3"]
+
+[ext_resource type="Script" uid="uid://r1mm0exotre4" path="res://data/CombatantStats.cs" id="1_0vhd0"]
+
+[resource]
+script = ExtResource("1_0vhd0")
+Name = "Reina"
+AttackDmg = 15
+Agility = 40
+metadata/_custom_type_script = "uid://r1mm0exotre4"

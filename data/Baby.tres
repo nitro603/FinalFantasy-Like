@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://c5fk22depys57"]
+
+[ext_resource type="Script" uid="uid://r1mm0exotre4" path="res://data/CombatantStats.cs" id="1_1rttm"]
+
+[resource]
+script = ExtResource("1_1rttm")
+Name = "ElBaby"
+metadata/_custom_type_script = "uid://r1mm0exotre4"

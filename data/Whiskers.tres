@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://dg2kvxdypapyj"]
+
+[ext_resource type="Script" uid="uid://r1mm0exotre4" path="res://data/CombatantStats.cs" id="1_ansev"]
+
+[resource]
+script = ExtResource("1_ansev")
+Name = "Whiskers"
+AttackDmg = 14
+Agility = 33
+metadata/_custom_type_script = "uid://r1mm0exotre4"

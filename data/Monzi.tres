@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://dwj4ndxrgicrc"]
+
+[ext_resource type="Script" uid="uid://r1mm0exotre4" path="res://data/CombatantStats.cs" id="1_feplk"]
+
+[resource]
+script = ExtResource("1_feplk")
+Name = "Monzi"
+AttackDmg = 14
+Agility = 30
+Enemy = true
+metadata/_custom_type_script = "uid://r1mm0exotre4"

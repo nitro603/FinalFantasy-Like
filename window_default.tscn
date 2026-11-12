@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dco2eyergd508"]
+
+[ext_resource type="Texture2D" uid="uid://2m88pyiukskd" path="res://art/nine_patch_black_tile.png" id="1_iblgj"]
+
+[node name="WindowDefault" type="NinePatchRect" unique_id=1907450269]
+texture_filter = 1
+size_flags_horizontal = 3
+texture = ExtResource("1_iblgj")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4

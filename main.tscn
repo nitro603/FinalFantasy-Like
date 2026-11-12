@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://drfetdn81tuay"]
+
+[ext_resource type="Script" uid="uid://cu5qp745v7rla" path="res://scripts/BattleManager.cs" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dco2eyergd508" path="res://window_default.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://iujk7gyk1re3" path="res://scenes/props/player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dqug8kxm42c1w" path="res://scenes/props/enemy.tscn" id="3_h2yge"]
+[ext_resource type="Resource" uid="uid://cxtff6xyhjuxc" path="res://data/Pedrolino.tres" id="5_4c57u"]
+[ext_resource type="Resource" uid="uid://d3kjmc6wbt5u3" path="res://data/Reina.tres" id="5_272bh"]
+[ext_resource type="Resource" uid="uid://dg2kvxdypapyj" path="res://data/Whiskers.tres" id="6_efxa6"]
+[ext_resource type="Resource" uid="uid://c5fk22depys57" path="res://data/Baby.tres" id="7_dg77c"]
+[ext_resource type="Resource" uid="uid://bpaduft5vfv0" path="res://data/Mabeet.tres" id="9_ycdy4"]
+[ext_resource type="Resource" uid="uid://dwj4ndxrgicrc" path="res://data/Monzi.tres" id="10_w48qg"]
+
+[node name="Node2D" type="Node2D" unique_id=47224301]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=373789733]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=812856029]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0147748655, 0.22719407, 0.37185988, 1)
+
+[node name="Battle" type="Control" parent="CanvasLayer" unique_id=1899893825]
+texture_filter = 1
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1bvp3")
+
+[node name="Bottom" type="BoxContainer" parent="CanvasLayer/Battle" unique_id=2127217993]
+custom_minimum_size = Vector2(200, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -52.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Enemies" parent="CanvasLayer/Battle/Bottom" unique_id=1907450269 instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="Players" parent="CanvasLayer/Battle/Bottom" unique_id=1605764764 instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+
+[node name="Options" parent="CanvasLayer/Battle" unique_id=663590252 instance=ExtResource("1_ig7tw")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -52.0
+offset_right = 120.0
+grow_vertical = 0
+size_flags_stretch_ratio = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Battle/Options" unique_id=1142834144]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -39.0
+offset_right = 21.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Battle/Options/VBoxContainer" unique_id=1899152245]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Fight
+"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Battle/Options/VBoxContainer" unique_id=1123065828]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "S. Attack
+"
+
+[node name="Button4" type="Button" parent="CanvasLayer/Battle/Options/VBoxContainer" unique_id=237806771]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Defend"
+
+[node name="Team" type="Control" parent="CanvasLayer/Battle" unique_id=663770974]
+anchors_preset = 0
+offset_left = -2.0
+offset_top = 6.0
+offset_right = 38.0
+offset_bottom = 46.0
+
+[node name="Player" parent="CanvasLayer/Battle/Team" unique_id=1976037758 instance=ExtResource("2_h2yge")]
+position = Vector2(230, 64)
+Data = ExtResource("5_272bh")
+
+[node name="Player1" parent="CanvasLayer/Battle/Team" unique_id=146327998 instance=ExtResource("2_h2yge")]
+position = Vector2(252, 29)
+Data = ExtResource("5_4c57u")
+
+[node name="Player2" parent="CanvasLayer/Battle/Team" unique_id=1315655812 instance=ExtResource("2_h2yge")]
+position = Vector2(260, 87)
+Data = ExtResource("6_efxa6")
+
+[node name="Player3" parent="CanvasLayer/Battle/Team" unique_id=995510788 instance=ExtResource("2_h2yge")]
+position = Vector2(308, 95)
+Data = ExtResource("7_dg77c")
+
+[node name="Enemies" type="Control" parent="CanvasLayer/Battle" unique_id=1838724649]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Enemy" parent="CanvasLayer/Battle/Enemies" unique_id=875769358 instance=ExtResource("3_h2yge")]
+position = Vector2(113, 51)
+Data = ExtResource("9_ycdy4")
+
+[node name="Enemy1" parent="CanvasLayer/Battle/Enemies" unique_id=244918443 instance=ExtResource("3_h2yge")]
+position = Vector2(93, 93)
+Data = ExtResource("10_w48qg")
+
+[node name="Enemy2" parent="CanvasLayer/Battle/Enemies" unique_id=747580247 instance=ExtResource("3_h2yge")]
+position = Vector2(68, 66)
+Data = ExtResource("10_w48qg")
