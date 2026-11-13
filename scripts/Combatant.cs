@@ -9,6 +9,7 @@ public partial class Combatant : Node
 	[Export] public int CurrentHp = 100; 
 	[Export] public CombatantStats Data;
 	private AutoBattler _CombatantAI;
+	public BattleAction Decision;
 	
 
 	public void TakeDamage(int opponentDamage)
@@ -19,6 +20,11 @@ public partial class Combatant : Node
 	public void SetAI(AutoBattler ai)
 	{
 		_CombatantAI = ai;
+	}
+
+	public void GenerateDecision()
+	{
+		Decision = _CombatantAI.Choose();
 	}
 	
 	

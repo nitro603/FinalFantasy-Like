@@ -1,24 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Final_Fantasy_Like.scripts;
 
 public class AutoBattler
 {
-    private Combatant[] Opponents;
+    private List<Combatant> Opponents;
     
-    public AutoBattler(Combatant[] currentOpponents)
+    public AutoBattler(List<Combatant> currentOpponents)
     {
         Opponents = currentOpponents;
     }
 
-    public Combatant Choose()
+    public BattleAction Choose()
     {
         Random rng = new Random();
-        int number = rng.Next(1, 101);
+        int index = rng.Next(0,Opponents.Count);
         
-        Debug.Print(number.ToString());
-        return new Combatant();
+        return new BattleAction(Opponents.ElementAt(index).Data.Name, "Attack");
     }
     
     

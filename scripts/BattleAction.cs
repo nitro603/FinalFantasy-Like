@@ -3,6 +3,13 @@ using System;
 
 public class BattleAction
 {
-	public String Target;
-	public 
+	public string Target;
+	public string Effect;
+
+	public BattleAction(string target, string effect)
+	{
+		Target = target;
+		Effect = effect;
+	}
+	
 }
