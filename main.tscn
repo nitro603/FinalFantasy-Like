@@ -135,6 +135,8 @@ grow_vertical = 1
 position = Vector2(248, 13)
 Data = ExtResource("5_4c57u")
 
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/BattleUI/Battle/Team/Player1" unique_id=1503990585]
+
 [node name="Player2" parent="CanvasLayer/BattleUI/Battle/Team" unique_id=1315655812 instance=ExtResource("2_h2yge")]
 position = Vector2(248, 111)
 Data = ExtResource("6_efxa6")
