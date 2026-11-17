@@ -5,17 +5,14 @@ using System.Linq;
 
 namespace Final_Fantasy_Like.scripts;
 
-public class AutoBattler
-{
+public class AutoBattler {
     private List<Combatant> Opponents;
     
-    public AutoBattler(List<Combatant> currentOpponents)
-    {
+    public AutoBattler(List<Combatant> currentOpponents) {
         Opponents = currentOpponents;
     }
 
-    public BattleAction Choose()
-    {
+    public BattleAction Choose() {
         Random rng = new Random();
         int index = rng.Next(0,Opponents.Count);
         

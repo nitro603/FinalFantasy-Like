@@ -5,15 +5,13 @@ using System.Diagnostics;
 using System.Linq;
 using Final_Fantasy_Like.scripts;
 
-public partial class BattleManager : Node
-{
+public partial class BattleManager : Node {
 	private TurnQueue Queue;
 	private List<Combatant> Team;
 	private List<Combatant> Enemies;
 	
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+	public override void _Ready() {
 		var combatants = FindChildren("*", "Node", true, false).OfType<Combatant>().ToList();
 		//change to list, in order to work with groupCombatants function
 		
@@ -21,22 +19,20 @@ public partial class BattleManager : Node
 		Enemies = new List<Combatant>();
 		GroupCombatants(combatants);
 		SetOpponents();
-		
 		MakeDecisions();
+		
 		Queue = new TurnQueue(combatants);
-		StartRound();
+		//StartRound();
 		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+	public override void _Process(double delta) {
+		
 	}
 
-	public void StartRound()
-	{
-		foreach (var combatant in Queue.CurrentTurnOrder)
-		{
+	public void StartRound() {
+		foreach (var combatant in Queue.CurrentTurnOrder) {
 			String target = combatant.Decision.Target;
 			int damage = combatant.Data.AttackDmg;
 			bool enemy = combatant.Data.Enemy;
@@ -46,45 +42,36 @@ public partial class BattleManager : Node
 		}
 	}
 
-	public void BasicAttack(String name, int attackDamage, bool enemy)
-	{
+	public void BasicAttack(String name, int attackDamage, bool enemy) {
 		if (enemy) {
-			foreach (var combatant in Team)
-			{
-				if (combatant.Data.Name == name)
-				{
-					combatant.TakeDamage(attackDamage);
+			foreach (var opponent in Team) {
+				if (opponent.Data.Name == name) {
+					CalculationResult result = DamageCalculator.basicAttack(attackDamage, opponent.Data.Defense);
+					opponent.TakeDamage(result.Damage);
 				}
 			}
 		}
-		else
-		{
-			foreach (var combatant in Enemies)
-			{
-				if (combatant.Data.Name == name)
-				{
-					combatant.TakeDamage(attackDamage);
+		else {
+			foreach (var opponent in Enemies) {
+				if (opponent.Data.Name == name) {
+					CalculationResult result = DamageCalculator.basicAttack(attackDamage, opponent.Data.Defense);
+					opponent.TakeDamage(result.Damage);
 				}
 			}
 		}
 	}
 	
-
-	private void MakeDecisions()
-	{
-		foreach (var member in Enemies)
-		{
+	private void MakeDecisions() {
+		foreach (var member in Enemies) {
 			member.GenerateDecision();
 		}
 		//remove when we get battleUIManager
-		foreach (var member in Team)
-		{
+		foreach (var member in Team) {
 			member.GenerateDecision();
 		}
-
 	}
-	private void GroupCombatants(List<Combatant> list) 
-	{
+	
+	private void GroupCombatants(List<Combatant> list) {
 		foreach (var combatant in list) {
 			if (combatant.Data.Enemy) {
 				Enemies.Add(combatant);
@@ -94,8 +81,8 @@ public partial class BattleManager : Node
 			}
 		}
 	}
-	private void SetOpponents()
-	{
+	
+	private void SetOpponents() {
 		//remove when you enable BattleUIManager 
 		foreach (var member in Team) {
 			member.SetAI(new AutoBattler(Enemies));
@@ -104,5 +91,4 @@ public partial class BattleManager : Node
 			member.SetAI(new AutoBattler(Team));
 		}
 	}
-	
 }

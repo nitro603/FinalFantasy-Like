@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dwrd2tqvlmnl1"]
+
+[ext_resource type="PackedScene" uid="uid://iujk7gyk1re3" path="res://scenes/props/player.tscn" id="1_rwavv"]
+[ext_resource type="Resource" uid="uid://cxtff6xyhjuxc" path="res://data/Pedrolino.tres" id="2_ip3rx"]
+
+[node name="PanelContainer" type="PanelContainer" unique_id=571243705]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=479276365]
+layout_mode = 2
+
+[node name="Player1" parent="VBoxContainer" unique_id=1976037758 instance=ExtResource("1_rwavv")]
+position = Vector2(248, 13)
+Data = ExtResource("2_ip3rx")
