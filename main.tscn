@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cc5fqxtp6krjp" path="res://scenes/props/gameButtons.tscn" id="3_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dqug8kxm42c1w" path="res://scenes/props/enemy.tscn" id="3_h2yge"]
 [ext_resource type="Resource" uid="uid://cxtff6xyhjuxc" path="res://data/Pedrolino.tres" id="5_4c57u"]
-[ext_resource type="PackedScene" uid="uid://da5pdxxuhalts" path="res://scenes/props/unit_container.tscn" id="5_dg77c"]
+[ext_resource type="PackedScene" uid="uid://dwrd2tqvlmnl1" path="res://StatusPanel.tscn" id="5_dg77c"]
 [ext_resource type="Resource" uid="uid://dg2kvxdypapyj" path="res://data/Whiskers.tres" id="6_efxa6"]
 [ext_resource type="Resource" uid="uid://c5fk22depys57" path="res://data/Baby.tres" id="7_dg77c"]
 [ext_resource type="Resource" uid="uid://bpaduft5vfv0" path="res://data/Mabeet.tres" id="9_ycdy4"]
@@ -117,8 +117,19 @@ offset_top = 90.0
 offset_right = 262.0
 offset_bottom = 117.0
 
-[node name="UnitContainer" parent="CanvasLayer/BattleUI/Battle/Team" unique_id=2052594720 instance=ExtResource("5_dg77c")]
+[node name="PanelContainer" parent="CanvasLayer/BattleUI/Battle/Team" unique_id=571243705 instance=ExtResource("5_dg77c")]
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 4.0
+offset_bottom = 27.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Player1" parent="CanvasLayer/BattleUI/Battle/Team" unique_id=146327998 instance=ExtResource("2_h2yge")]
 position = Vector2(248, 13)
