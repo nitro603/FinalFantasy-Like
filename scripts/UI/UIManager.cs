@@ -5,12 +5,11 @@ using System.Linq;
 
 public partial class UIManager : Node {
 
-	private BattleManager BattleManager;
+	[Export]public BattleManager BattleManager;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		
-		BattleManager = GetChildren().OfType<BattleManager>().FirstOrDefault();
-		
+		BattleManager.StartRound();	
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

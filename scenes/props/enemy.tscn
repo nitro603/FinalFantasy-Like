@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dqug8kxm42c1w"]
 
 [ext_resource type="Texture2D" uid="uid://chhn8um2mf3c8" path="res://art/white_circle.png" id="1_7k104"]
-[ext_resource type="Script" uid="uid://cx1v844acpimr" path="res://scripts/Combatant.cs" id="1_p7c84"]
+[ext_resource type="Script" uid="uid://cx1v844acpimr" path="res://scripts/Combat/Combatant.cs" id="1_p7c84"]
 
 [node name="Enemy1" type="Node2D" unique_id=875769358]
 script = ExtResource("1_p7c84")

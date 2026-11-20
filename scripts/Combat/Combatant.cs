@@ -4,14 +4,22 @@ using System.Diagnostics;
 using Final_Fantasy_Like.scripts;
 
 public partial class Combatant : Node {
-	[Export] private int _maxHp = 100;
+	[Export] public int MaxHp = 100;
 	[Export] public int CurrentHp = 100; 
 	[Export] public CombatantStats Data;
+	[Export] public UnitStatusPanel Panel;
 	private AutoBattler _CombatantAI;
 	public BattleAction Decision;
-	
+
+
+	public override void _Ready() {
+		Sprite2D sprite = GetNode<Sprite2D>("VBoxContainer/Control/Character/Texture");
+		sprite.SetTexture(Data.Sprite);
+		Panel.SetValues(CurrentHp, MaxHp);
+	}
 
 	public void TakeDamage(int opponentDamage) {
+		Panel.ReduceByAttack(opponentDamage);
 		CurrentHp = CurrentHp - opponentDamage < 0 ? 0 : CurrentHp - opponentDamage;
 	}
 

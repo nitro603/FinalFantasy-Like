@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://bpqe74p37jvka"]
+
+[ext_resource type="Script" uid="uid://r1mm0exotre4" path="res://data/CombatantStats.cs" id="1_6gqr2"]
+[ext_resource type="Texture2D" uid="uid://chhn8um2mf3c8" path="res://art/white_circle.png" id="1_yawgv"]
+
+[resource]
+script = ExtResource("1_6gqr2")
+Name = "Monke"
+Sprite = ExtResource("1_yawgv")
+Enemy = true
+metadata/_custom_type_script = "uid://r1mm0exotre4"

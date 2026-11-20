@@ -22,7 +22,7 @@ public partial class BattleManager : Node {
 		MakeDecisions();
 		
 		Queue = new TurnQueue(combatants);
-		//StartRound();
+		StartRound();
 		
 	}
 

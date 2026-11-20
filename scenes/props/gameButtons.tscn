@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cc5fqxtp6krjp"]
 
 [node name="Button" type="Button" unique_id=912075206]
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 6
 text = "Fight
 "
