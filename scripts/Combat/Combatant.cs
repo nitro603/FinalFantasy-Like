@@ -10,6 +10,7 @@ public partial class Combatant : Node {
 	[Export] public UnitStatusPanel Panel;
 	private AutoBattler _CombatantAI;
 	public BattleAction Decision;
+	public bool Dead;
 
 
 	public override void _Ready() {
@@ -21,6 +22,7 @@ public partial class Combatant : Node {
 	public void TakeDamage(int opponentDamage) {
 		Panel.ReduceByAttack(opponentDamage);
 		CurrentHp = CurrentHp - opponentDamage < 0 ? 0 : CurrentHp - opponentDamage;
+		Dead = CurrentHp == 0;
 	}
 
 	public void SetAI(AutoBattler ai) {
@@ -30,6 +32,7 @@ public partial class Combatant : Node {
 	public void GenerateDecision() {
 		Decision = _CombatantAI.Choose();
 	}
+	
 	
 	
 }

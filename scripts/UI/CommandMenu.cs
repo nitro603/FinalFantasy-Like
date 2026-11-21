@@ -1,64 +1,60 @@
+using System;
+using System.Diagnostics;
 using Godot;
 
 enum CombatAction {
-    Attack,
-    Ability,
-    Defend,
-    Nurture
+	Attack,
+	Ability,
+	Defend,
+	Nurture
 }
 
 
 public partial class CommandMenu : Control
 {
-    
-    [Signal] public delegate void ActionChosenEventHandler(int action);
+	
+	[Signal] public delegate void ActionChosenEventHandler(int action);
 
    
-    private Button _attackButton;  
-    private Button _abilityButton; 
-    private Button _defendButton; 
-    private Button _nurtureButton;
+	[Export] public Button AttackButton;  
+	[Export] public Button AbilityButton; 
+	[Export] public Button DefendButton; 
+	[Export] public Button NurtureButton;
 
-    private bool _locked;
+	private bool _locked;
 
-    public override void _Ready()
-    {
-        
-        _attackButton = GetNode<Button>("%AttackButton");
-        _abilityButton = GetNode<Button>("%AbilityButton");   // Looks up the Ability button.
-        _defendButton = GetNode<Button>("%DefendButton");     // Looks up the Defend button.
-        _nurtureButton = GetNode<Button>("%NurtureButton");   // Looks up the Nurture button.
-        
-        _attackButton.Pressed += () => OnActionPressed(CombatAction.Attack);
-
-        _abilityButton.Pressed += () => OnActionPressed(CombatAction.Ability);  // Greys out Ability.
-        _defendButton.Disabled = true;   // Greys out Defend.
-        _nurtureButton.Disabled = true;  // Greys out Nurture.
-        
-        Lock();
-    }
-    
-    public void Open()
-    {
-        _locked = false;           
-        Show();                    
-        _attackButton.GrabFocus(); 
-    }
-    
-    public void Lock()
-    {
-        _locked = true; 
-        Hide();         
-    }
-    
-    private void OnActionPressed(CombatAction action)
-    {
-        if (_locked) {
-            return;
-        }  
-
-        Lock();
-        
-        EmitSignal(SignalName.ActionChosen, (int)action);
-    }
+	public override void _Ready()
+	{
+		
+		AttackButton.Pressed += () => OnActionPressed(CombatAction.Attack);
+		AbilityButton.Pressed += () => OnActionPressed(CombatAction.Ability); 
+		DefendButton.Pressed += () => OnActionPressed(CombatAction.Defend);
+		NurtureButton.Pressed += () => OnActionPressed(CombatAction.Nurture);
+		//Debug.Print("hello");
+		//Lock();
+	}
+	
+	
+	public void Open()
+	{
+		_locked = false;           
+		Show();                    
+		AttackButton.GrabFocus(); 
+	}
+	
+	public void Lock()
+	{
+		_locked = true; 
+		Hide();         
+	}
+	
+	private void OnActionPressed(CombatAction action)
+	{
+		if (_locked) {
+			return;
+		}  
+		//Lock();
+		
+		EmitSignal(SignalName.ActionChosen, (int)action);
+	}
 }

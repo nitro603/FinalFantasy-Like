@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Final_Fantasy_Like.scripts;
 
 public partial class BattleManager : Node {
@@ -10,19 +11,16 @@ public partial class BattleManager : Node {
 	private List<Combatant> Team;
 	private List<Combatant> Enemies;
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		var combatants = FindChildren("*", "Node", true, false).OfType<Combatant>().ToList();
-		//change to list, in order to work with groupCombatants function
 		
 		Team = new List<Combatant>();
 		Enemies = new List<Combatant>();
 		GroupCombatants(combatants);
 		SetOpponents();
-		MakeDecisions();
 		
 		Queue = new TurnQueue(combatants);
-		StartRound();
+		//StartRound();
 		
 	}
 
@@ -31,7 +29,12 @@ public partial class BattleManager : Node {
 		
 	}
 
+	public void StartBattle() {
+		
+	}
+
 	public void StartRound() {
+		MakeEnemyDecisions();
 		foreach (var combatant in Queue.CurrentTurnOrder) {
 			String target = combatant.Decision.Target;
 			int damage = combatant.Data.AttackDmg;
@@ -39,6 +42,7 @@ public partial class BattleManager : Node {
 			
 			Debug.Print("Combatant (" + combatant.Data.Name + ") attacks " + target + " for " + damage + " Attack Points");
 			BasicAttack(combatant.Decision.Target, combatant.Data.AttackDmg, combatant.Data.Enemy);
+			//check Status
 		}
 	}
 
@@ -60,13 +64,26 @@ public partial class BattleManager : Node {
 			}
 		}
 	}
-	
-	private void MakeDecisions() {
-		foreach (var member in Enemies) {
-			member.GenerateDecision();
+
+	public void CheckStatus(Combatant combatant, bool enemy) {
+		if (enemy) {
+			if (combatant.Dead) {
+				
+			}	
 		}
-		//remove when we get battleUIManager
-		foreach (var member in Team) {
+		else {
+			if (combatant.Dead) {
+				Team.ElementAt(Team.IndexOf(combatant)).QueueFree();
+			}
+		}
+	}
+
+	public List<Combatant> GetTeam() {
+		return Team;
+	}
+	
+	private void MakeEnemyDecisions() {
+		foreach (var member in Enemies) {
 			member.GenerateDecision();
 		}
 	}
@@ -83,10 +100,6 @@ public partial class BattleManager : Node {
 	}
 	
 	private void SetOpponents() {
-		//remove when you enable BattleUIManager 
-		foreach (var member in Team) {
-			member.SetAI(new AutoBattler(Enemies));
-		}
 		foreach (var member in Enemies) {
 			member.SetAI(new AutoBattler(Team));
 		}
