@@ -1,93 +1,96 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Final_Fantasy_Like.scripts;
 
 public partial class BattleManager : Node {
 	private TurnQueue Queue;
+
+
 	private List<Combatant> Team;
 	private List<Combatant> Enemies;
-	
+
 	public override void _Ready() {
 		var combatants = FindChildren("*", "Node", true, false).OfType<Combatant>().ToList();
-		
+
 		Team = new List<Combatant>();
 		Enemies = new List<Combatant>();
 		GroupCombatants(combatants);
 		SetOpponents();
-		
+
 		Queue = new TurnQueue(combatants);
 		//StartRound();
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {
-		
 	}
 
 	public void StartBattle() {
-		
 	}
 
 	public void StartRound() {
 		MakeEnemyDecisions();
-		foreach (var combatant in Queue.CurrentTurnOrder) {
-			String target = combatant.Decision.Target;
-			int damage = combatant.Data.AttackDmg;
-			bool enemy = combatant.Data.Enemy;
-			
-			Debug.Print("Combatant (" + combatant.Data.Name + ") attacks " + target + " for " + damage + " Attack Points");
-			BasicAttack(combatant.Decision.Target, combatant.Data.AttackDmg, combatant.Data.Enemy);
-			//check Status
+		
+		foreach (var attacker in Queue.CurrentTurnOrder.ToList()) {
+			if (BattleOver())
+				break;
+
+			if (attacker.Dead)
+				continue;
+
+			var target = ResolveTarget(attacker);
+			if (target == null)
+				continue;
+
+			BasicAttack(attacker, target);
 		}
+
+		EndRound();
+	}
+	
+	private Combatant ResolveTarget(Combatant attacker) {
+		var opponents = (attacker.Data.Enemy ? Team : Enemies)
+			.Where(o => !o.Dead)
+			.ToList();
+
+		var chosen = opponents.FirstOrDefault(opponent => opponent.Data.Name == attacker.Decision.Target);
+		return chosen ?? opponents.FirstOrDefault(); 
+	}
+	private void EndRound() {
+		 
+		 foreach (var dead in Enemies.Where(e => e.Dead).ToList()) {
+			 Enemies.Remove(dead);
+			 dead.QueueFree();
+		 }
+		 Queue = new TurnQueue(Team.Concat(Enemies).Where(c => !c.Dead).ToList());
 	}
 
-	public void BasicAttack(String name, int attackDamage, bool enemy) {
-		if (enemy) {
-			foreach (var opponent in Team) {
-				if (opponent.Data.Name == name) {
-					CalculationResult result = DamageCalculator.basicAttack(attackDamage, opponent.Data.Defense);
-					opponent.TakeDamage(result.Damage);
-				}
-			}
-		}
-		else {
-			foreach (var opponent in Enemies) {
-				if (opponent.Data.Name == name) {
-					CalculationResult result = DamageCalculator.basicAttack(attackDamage, opponent.Data.Defense);
-					opponent.TakeDamage(result.Damage);
-				}
-			}
-		}
+	private bool BattleOver() {
+		return Team.All(c => c.Dead) || Enemies.All(c => c.Dead);
 	}
-
-	public void CheckStatus(Combatant combatant, bool enemy) {
-		if (enemy) {
-			if (combatant.Dead) {
-				
-			}	
-		}
-		else {
-			if (combatant.Dead) {
-				Team.ElementAt(Team.IndexOf(combatant)).QueueFree();
-			}
-		}
+	
+	public void BasicAttack(Combatant attacker, Combatant target) {
+			CalculationResult result = DamageCalculator.basicAttack(attacker.Data.AttackDmg, target.Data.Defense);
+			GD.Print($"Combatant ({attacker.Data.Name}) attacks {target.Data.Name} for {result.Damage} Attack Points");
+	
+			target.TakeDamage(result.Damage);
+	
+			if (target.Dead)
+				GD.Print($"{target.Data.Name} was defeated");
 	}
+	
 
 	public List<Combatant> GetTeam() {
 		return Team;
 	}
-	
+
 	private void MakeEnemyDecisions() {
 		foreach (var member in Enemies) {
 			member.GenerateDecision();
 		}
 	}
-	
+
 	private void GroupCombatants(List<Combatant> list) {
 		foreach (var combatant in list) {
 			if (combatant.Data.Enemy) {
@@ -98,7 +101,7 @@ public partial class BattleManager : Node {
 			}
 		}
 	}
-	
+
 	private void SetOpponents() {
 		foreach (var member in Enemies) {
 			member.SetAI(new AutoBattler(Team));

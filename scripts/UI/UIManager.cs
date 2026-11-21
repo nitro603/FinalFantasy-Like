@@ -34,7 +34,7 @@ public partial class UIManager : Control {
 		Menu.ActionChosen += (action) => {
 			
 			Combatant Current = Team.ElementAt(CurrentPos);
-			Debug.Print(action.ToString() + Current.Data.Name);
+			Debug.Print(action + Current.Data.Name);
 			Current.Decision = new BattleAction(action, "MonkeButBigger", "none");
 			
 			CurrentPos += 1;
