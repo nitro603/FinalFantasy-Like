@@ -16,7 +16,7 @@ public class AutoBattler {
         Random rng = new Random();
         int index = rng.Next(0,Opponents.Count);
         
-        return new BattleAction(Opponents.ElementAt(index).Data.Name, "Attack");
+        return new BattleAction(0, Opponents.ElementAt(index).Data.Name, "Attack");
     }
     
     

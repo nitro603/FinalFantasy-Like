@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://do36iexpuhwdb"]
+
+[ext_resource type="Script" uid="uid://r1mm0exotre4" path="res://data/CombatantStats.cs" id="1_a3ubr"]
+[ext_resource type="Texture2D" uid="uid://chhn8um2mf3c8" path="res://art/white_circle.png" id="1_tgxh6"]
+
+[resource]
+script = ExtResource("1_a3ubr")
+Name = "MonkeButBigger"
+Sprite = ExtResource("1_tgxh6")
+AttackDmg = 20
+Enemy = true
+metadata/_custom_type_script = "uid://r1mm0exotre4"

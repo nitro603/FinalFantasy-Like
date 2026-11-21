@@ -1,15 +1,19 @@
 using Godot;
 using System;
 
-public partial class UnitStatusPanel : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+public partial class UnitStatusPanel : Node{
+	
+	[Export] public ProgressBar HPbar;
+
+	public void SetValues(int currentHP, int maxHP) {
+		HPbar.Value = currentHP;
+		HPbar.MaxValue = maxHP;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+	public void ReduceByAttack(int damage) {
+		double CurrentHp = HPbar.Value;
+		HPbar.Value = CurrentHp - damage < 0 ? 0 : CurrentHp - damage;
 	}
+	
+	
 }

@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://cxtff6xyhjuxc"]
 
 [ext_resource type="Script" uid="uid://r1mm0exotre4" path="res://data/CombatantStats.cs" id="1_16ir7"]
+[ext_resource type="Texture2D" uid="uid://cyqfsn4ccox6b" path="res://art/character_sprites/pedrolino/pedrolino.png" id="1_ythfy"]
 
 [resource]
 script = ExtResource("1_16ir7")
 Name = "Pedrolino"
+Sprite = ExtResource("1_ythfy")
 AttackDmg = 12
 Agility = 35
 metadata/_custom_type_script = "uid://r1mm0exotre4"
