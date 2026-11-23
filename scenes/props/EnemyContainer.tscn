@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cpwsq3gn3ksxg"]
+
+[ext_resource type="StyleBox" uid="uid://d30kr5t2ok5bb" path="res://new_style_box_flat2.tres" id="1_8jbi5"]
+[ext_resource type="Script" uid="uid://cx1v844acpimr" path="res://scripts/Combat/Combatant.cs" id="2_kmylu"]
+[ext_resource type="Script" uid="uid://cx8rhsjkmlkev" path="res://scripts/UI/UnitStatusPanel.cs" id="3_u5dt3"]
+[ext_resource type="StyleBox" uid="uid://dmoyidv6i5x2h" path="res://new_style_box_flat.tres" id="4_3mrcl"]
+
+[node name="PanelContainer" type="PanelContainer" unique_id=571243705 node_paths=PackedStringArray("Panel")]
+custom_minimum_size = Vector2(36, 42)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = -118.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_8jbi5")
+script = ExtResource("2_kmylu")
+Panel = NodePath("StatusController")
+
+[node name="StatusController" type="Control" parent="." unique_id=1291894009 node_paths=PackedStringArray("HPbar", "EnemySelect")]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("3_u5dt3")
+HPbar = NodePath("../VBoxContainer/ProgressBar")
+EnemySelect = NodePath("../Button")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=479276365]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=806244353]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Character" type="Node2D" parent="VBoxContainer/Control" unique_id=2021832821]
+position = Vector2(18, 26)
+
+[node name="Texture" type="Sprite2D" parent="VBoxContainer/Control/Character" unique_id=543058265]
+flip_h = true
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=899103824]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/fill = ExtResource("4_3mrcl")
+value = 35.0
+show_percentage = false
+
+[node name="Button" type="Button" parent="." unique_id=1601520170]
+layout_mode = 2
+flat = true
