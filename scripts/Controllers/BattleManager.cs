@@ -1,12 +1,10 @@
 using Godot;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using Final_Fantasy_Like.scripts;
 
 public partial class BattleManager : Node {
 	private TurnQueue Queue;
-
-
 	private List<Combatant> Team;
 	private List<Combatant> Enemies;
 
@@ -16,6 +14,7 @@ public partial class BattleManager : Node {
 		Team = new List<Combatant>();
 		Enemies = new List<Combatant>();
 		GroupCombatants(combatants);
+		GD.Print(Team.ElementAt(0).Data.Name);
 		SetOpponents();
 
 		Queue = new TurnQueue(combatants);
@@ -83,6 +82,10 @@ public partial class BattleManager : Node {
 
 	public List<Combatant> GetTeam() {
 		return Team;
+	}
+
+	public List<Combatant> GetEnemies() {
+		return Enemies;
 	}
 
 	private void MakeEnemyDecisions() {

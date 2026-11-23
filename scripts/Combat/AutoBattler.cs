@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Final_Fantasy_Like.scripts;
 
 public class AutoBattler {
     private List<Combatant> Opponents;
@@ -16,7 +15,7 @@ public class AutoBattler {
         Random rng = new Random();
         int index = rng.Next(0,Opponents.Count);
         
-        return new BattleAction(0, Opponents.ElementAt(index).Data.Name, "Attack");
+        return new BattleAction(0, Opponents.ElementAt(index).Data.Name);
     }
     
     
