@@ -12,52 +12,64 @@ public partial class GameController : Node {
 	[Export] public CommandMenu Menu;
 
 	public List<Combatant> Team;
+	public List<Combatant> LivingTeam;
 	public List<Combatant> Enemies;
-	public Combatant CurrentAttacker;
+	public List<Combatant> Targets;
+	public Combatant CurrentTeamMember;
 	public Combatant Target;
+	public bool targeting;
 	public int CurrentPos;
-	public bool Targeting;
+	public int CurrentAction;
 	
 	
 	// Called when the node enters the scene tree for the first time. 
 	public override void _Ready() {
 		Team = BattleManager.GetTeam();
 		Enemies = BattleManager.GetEnemies();
+		LivingTeam = Team;
+		Targets = new List<Combatant>();
 		CurrentPos = 0;
 
 		StartTurn();
-		//set combatant decisions through command menu and target locks
-		
-		//we want this to communicate to UI manager to tell us who made the decision and what character it was
-		//Flow
-		//Game controller starts player turns --> sends signal to open command menu --> command menu takes
-		//input of decision  --> sends decision back to UI manager which keeps track of which combatant's turn it was
-		//--> UI manager sends signal to game controller containing combatant and decision
-		//controller decides what to do from there:
-		//If attack (execute battle manager logic with UI changes)
-		//if ability --> send signal to minigame to spawn the specific character's minigame
-		//if defense (execute battle manager logic)
-		//if Nurture --> send signal to minigame to spawn baby minigame
 	}
 
 	public void StartTurn() { 
 		Menu.ActionChosen += action => {
-			Random rng = new Random();
-			int index = rng.Next(0,Enemies.Count);
+			CurrentAction = action;
+			CurrentTeamMember = LivingTeam.ElementAt(CurrentPos);
+
+			if (action == 0) {
+				UIManager.TargetSelectionMode();
+				targeting = true;
+			}
 			
-			CurrentAttacker = Team.ElementAt(CurrentPos);
-			Target = Enemies.ElementAt(index);
+			GetLivingMembers();
 			
-			CurrentAttacker.Decision = new BattleAction(action, Target.Data.Name);
 			EmitSignal(SignalName.DecisionByPlayer, CurrentPos, action);
 			
+			if (!targeting) {
+				CurrentPos++;
+				if (CurrentPos == LivingTeam.Count) { 
+					BattleManager.StartRound();
+					CurrentPos = 0; 
+				}
+			}
+			
+		};
+		UIManager.EnemiesSelected += targets => {
+			GetLivingMembers();
+			CurrentTeamMember.Decision = new BattleAction(CurrentAction, targets.ToList());
 			CurrentPos++;
-			if (CurrentPos == 3) { 
-				BattleManager.StartRound(); 
+			if (CurrentPos == LivingTeam.Count) { 
+				BattleManager.StartRound();
 				CurrentPos = 0; 
 			}
+			Debug.Print(CurrentPos.ToString());
+			targeting = false;
 		};
 	}
 
-	
+	public void GetLivingMembers() {
+		LivingTeam = Team.Where(character => !character.Dead).ToList();
+	}
 }

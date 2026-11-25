@@ -1,8 +1,8 @@
 using Godot;
 using System;
 
-public partial class UnitStatusPanel : Node{
-	
+public partial class UnitStatusPanel : Node {
+
 	[Export] public ProgressBar HPbar;
 	[Export] public Button EnemySelect;
 

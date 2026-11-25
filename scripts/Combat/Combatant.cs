@@ -10,7 +10,7 @@ public partial class Combatant : Node {
 	private Sprite2D Sprite;
 	private AutoBattler _CombatantAI;
 	public BattleAction Decision;
-	public bool Highlighted = false;
+	public bool Highlighted;
 	public bool Dead;
 
 
@@ -18,12 +18,6 @@ public partial class Combatant : Node {
 		Sprite = GetNode<Sprite2D>("VBoxContainer/Control/Character/Texture");
 		Sprite.SetTexture(Data.Sprite);
 		Panel.SetValues(CurrentHp, MaxHp);
-		if (Data.Enemy) {
-			Panel.EnemySelect.Pressed += () => {
-				Highlighted = !Highlighted;
-				SetHighlighted(Highlighted);
-			};
-		}
 		
 	}
 
