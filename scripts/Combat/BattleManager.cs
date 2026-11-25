@@ -16,6 +16,7 @@ public partial class BattleManager : Node {
 		Team = new List<Combatant>();
 		Enemies = new List<Combatant>();
 		GroupCombatants(combatants);
+		GD.Print(Team.ElementAt(0).Data.Name);
 		SetOpponents();
 
 		Queue = new TurnQueue(combatants);

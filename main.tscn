@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dg2kvxdypapyj" path="res://data/Whiskers.tres" id="6_efxa6"]
 [ext_resource type="Resource" uid="uid://d3kjmc6wbt5u3" path="res://data/Reina.tres" id="8_w48qg"]
 [ext_resource type="Resource" uid="uid://do36iexpuhwdb" path="res://data/Demo_Enemy.tres" id="9_4c57u"]
+[ext_resource type="Script" uid="uid://da633vqnbkypc" path="res://scripts/Combat/MiniGame.gd" id="10_dg77c"]
 [ext_resource type="Resource" uid="uid://bpqe74p37jvka" path="res://data/Demo_Enemy2.tres" id="10_efxa6"]
 
 [node name="Node2D" type="Node2D" unique_id=47224301]
@@ -184,6 +185,15 @@ offset_bottom = 93.0
 grow_horizontal = 1
 grow_vertical = 1
 Data = ExtResource("10_efxa6")
+
+[node name="MiniGame" parent="CanvasLayer/Battle" unique_id=1071427915 node_paths=PackedStringArray("menu") instance=ExtResource("1_ig7tw")]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 159.0
+offset_bottom = 119.0
+script = ExtResource("10_dg77c")
+menu = NodePath("../Options/Menu")
 
 [node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=439213850 node_paths=PackedStringArray("BattleManager", "Menu")]
 layout_mode = 3
