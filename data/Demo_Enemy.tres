@@ -7,6 +7,6 @@
 script = ExtResource("1_a3ubr")
 Name = "MonkeButBigger"
 Sprite = ExtResource("1_tgxh6")
-AttackDmg = 20
+AttackDmg = 50
 Enemy = true
 metadata/_custom_type_script = "uid://r1mm0exotre4"

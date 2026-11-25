@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://iujk7gyk1re3"]
-
-[ext_resource type="Script" uid="uid://cx1v844acpimr" path="res://scripts/Combat/Combatant.cs" id="1_31dy1"]
-
-[node name="player" type="Node2D" unique_id=1976037758]
-script = ExtResource("1_31dy1")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1357238383]
-modulate = Color(0.27058825, 0.79607844, 0.27058825, 1)

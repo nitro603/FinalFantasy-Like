@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://drfetdn81tuay"]
 
-[ext_resource type="Script" uid="uid://cu5qp745v7rla" path="res://scripts/Combat/BattleManager.cs" id="1_1bvp3"]
-[ext_resource type="Script" uid="uid://oalsyulhfbf8" path="res://scripts/UI/UIManager.cs" id="1_dg77c"]
+[ext_resource type="Script" uid="uid://cu5qp745v7rla" path="res://scripts/Controllers/BattleManager.cs" id="1_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dco2eyergd508" path="res://scenes/props/window_default.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c6sk481a4j4v" path="res://Menu.tscn" id="3_4c57u"]
 [ext_resource type="Resource" uid="uid://cxtff6xyhjuxc" path="res://data/Pedrolino.tres" id="5_4c57u"]
-[ext_resource type="PackedScene" uid="uid://dwrd2tqvlmnl1" path="res://StatusPanel.tscn" id="5_dg77c"]
+[ext_resource type="PackedScene" uid="uid://dwrd2tqvlmnl1" path="res://scenes/props/TeamContainer.tscn" id="5_dg77c"]
 [ext_resource type="Resource" uid="uid://dg2kvxdypapyj" path="res://data/Whiskers.tres" id="6_efxa6"]
+[ext_resource type="PackedScene" uid="uid://cpwsq3gn3ksxg" path="res://scenes/props/EnemyContainer.tscn" id="8_4c57u"]
 [ext_resource type="Resource" uid="uid://d3kjmc6wbt5u3" path="res://data/Reina.tres" id="8_w48qg"]
 [ext_resource type="Resource" uid="uid://do36iexpuhwdb" path="res://data/Demo_Enemy.tres" id="9_4c57u"]
-[ext_resource type="Script" uid="uid://da633vqnbkypc" path="res://scripts/Combat/MiniGame.gd" id="10_dg77c"]
-[ext_resource type="Resource" uid="uid://bpqe74p37jvka" path="res://data/Demo_Enemy2.tres" id="10_efxa6"]
+[ext_resource type="Script" uid="uid://oalsyulhfbf8" path="res://scripts/Controllers/UIManager.cs" id="10_efxa6"]
+[ext_resource type="Script" uid="uid://c6u2c2osoahnt" path="res://scripts/Controllers/GameController.cs" id="11_efxa6"]
 
 [node name="Node2D" type="Node2D" unique_id=47224301]
 
@@ -36,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_1bvp3")
+script = ExtResource("1_4c57u")
 
 [node name="Bottom" type="BoxContainer" parent="CanvasLayer/Battle" unique_id=2127217993]
 custom_minimum_size = Vector2(200, 48)
@@ -50,7 +50,7 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="Enemies" parent="CanvasLayer/Battle/Bottom" unique_id=1907450269 instance=ExtResource("1_ig7tw")]
+[node name="Enemies" parent="CanvasLayer/Battle/Bottom" unique_id=893566477 instance=ExtResource("1_ig7tw")]
 layout_mode = 2
 
 [node name="Players" parent="CanvasLayer/Battle/Bottom" unique_id=1605764764 instance=ExtResource("1_ig7tw")]
@@ -148,54 +148,45 @@ offset_top = 9.0
 offset_right = 67.0
 offset_bottom = 49.0
 
-[node name="PanelContainer" parent="CanvasLayer/Battle/Enemies" unique_id=839454802 instance=ExtResource("5_dg77c")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 52.0
-offset_top = 19.0
-offset_right = 94.0
-offset_bottom = 69.0
-grow_horizontal = 1
-grow_vertical = 1
-Data = ExtResource("9_4c57u")
-
-[node name="PanelContainer2" parent="CanvasLayer/Battle/Enemies" unique_id=483463020 instance=ExtResource("5_dg77c")]
+[node name="PanelContainer" parent="CanvasLayer/Battle/Enemies" unique_id=1860379664 instance=ExtResource("8_4c57u")]
 layout_mode = 1
-offset_left = -13.0
-offset_top = -38.0
-offset_right = 29.0
-offset_bottom = 12.0
+offset_left = 17.0
+offset_top = 32.0
+offset_right = 59.0
+offset_bottom = 82.0
 Data = ExtResource("9_4c57u")
 
-[node name="PanelContainer3" parent="CanvasLayer/Battle/Enemies" unique_id=1227671342 instance=ExtResource("5_dg77c")]
+[node name="PanelContainer2" parent="CanvasLayer/Battle/Enemies" unique_id=2087337238 instance=ExtResource("8_4c57u")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 7.0
-offset_top = 43.0
-offset_right = 49.0
-offset_bottom = 93.0
+offset_left = -2.0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 57.0
 grow_horizontal = 1
 grow_vertical = 1
-Data = ExtResource("10_efxa6")
+Data = ExtResource("9_4c57u")
 
-[node name="MiniGame" parent="CanvasLayer/Battle" unique_id=1071427915 node_paths=PackedStringArray("menu") instance=ExtResource("1_ig7tw")]
+[node name="PanelContainer3" parent="CanvasLayer/Battle/Enemies" unique_id=1983991596 instance=ExtResource("8_4c57u")]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 23.0
-offset_right = 159.0
-offset_bottom = 119.0
-script = ExtResource("10_dg77c")
-menu = NodePath("../Options/Menu")
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -5.0
+offset_top = 60.0
+offset_right = 37.0
+offset_bottom = 110.0
+grow_horizontal = 1
+grow_vertical = 1
+Data = ExtResource("9_4c57u")
 
-[node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=439213850 node_paths=PackedStringArray("BattleManager", "Menu")]
+[node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=439213850 node_paths=PackedStringArray("BattleManager", "Menu", "Controller")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,6 +194,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_dg77c")
+script = ExtResource("10_efxa6")
 BattleManager = NodePath("../Battle")
+Menu = NodePath("../Battle/Options/Menu")
+Controller = NodePath("../GameController")
+
+[node name="GameController" type="Control" parent="CanvasLayer" unique_id=1112182627 node_paths=PackedStringArray("BattleManager", "UIManager", "Menu")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_efxa6")
+BattleManager = NodePath("../Battle")
+UIManager = NodePath("../BattleUI")
 Menu = NodePath("../Battle/Options/Menu")

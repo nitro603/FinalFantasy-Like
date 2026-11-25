@@ -9,4 +9,5 @@ Name = "Whiskers"
 Sprite = ExtResource("1_ibuae")
 AttackDmg = 14
 Agility = 33
+TargetRange = 2
 metadata/_custom_type_script = "uid://r1mm0exotre4"
