@@ -46,6 +46,7 @@ position = Vector2(18, 26)
 flip_h = true
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=899103824]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/fill = ExtResource("4_3mrcl")
@@ -53,5 +54,6 @@ value = 35.0
 show_percentage = false
 
 [node name="Button" type="Button" parent="." unique_id=1601520170]
+visible = false
 layout_mode = 2
 flat = true

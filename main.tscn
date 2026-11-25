@@ -150,10 +150,40 @@ offset_bottom = 49.0
 
 [node name="PanelContainer" parent="CanvasLayer/Battle/Enemies" unique_id=1860379664 instance=ExtResource("8_4c57u")]
 layout_mode = 1
-offset_left = -22.0
-offset_top = -13.0
-offset_right = 20.0
-offset_bottom = 37.0
+offset_left = 17.0
+offset_top = 32.0
+offset_right = 59.0
+offset_bottom = 82.0
+Data = ExtResource("9_4c57u")
+
+[node name="PanelContainer2" parent="CanvasLayer/Battle/Enemies" unique_id=2087337238 instance=ExtResource("8_4c57u")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -2.0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 57.0
+grow_horizontal = 1
+grow_vertical = 1
+Data = ExtResource("9_4c57u")
+
+[node name="PanelContainer3" parent="CanvasLayer/Battle/Enemies" unique_id=1983991596 instance=ExtResource("8_4c57u")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -5.0
+offset_top = 60.0
+offset_right = 37.0
+offset_bottom = 110.0
+grow_horizontal = 1
+grow_vertical = 1
 Data = ExtResource("9_4c57u")
 
 [node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=439213850 node_paths=PackedStringArray("BattleManager", "Menu", "Controller")]

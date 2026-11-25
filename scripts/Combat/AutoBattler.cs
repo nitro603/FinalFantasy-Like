@@ -14,8 +14,8 @@ public class AutoBattler {
     public BattleAction Choose() {
         Random rng = new Random();
         int index = rng.Next(0,Opponents.Count);
-        
-        return new BattleAction(0, Opponents.ElementAt(index).Data.Name);
+        List<Combatant> targets = new List<Combatant>([Opponents.ElementAt(index)]);
+        return new BattleAction(0, targets);
     }
     
     

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://clr406y5pgbsj" path="res://scripts/UI/CommandMenu.cs" id="1_5yleq"]
 [ext_resource type="PackedScene" uid="uid://cc5fqxtp6krjp" path="res://scenes/props/gameButtons.tscn" id="1_uubjt"]
 
-[node name="VBoxContainer" type="VBoxContainer" unique_id=1392984275 node_paths=PackedStringArray("AttackButton", "AbilityButton", "DefendButton", "NurtureButton")]
+[node name="VBoxContainer" type="VBoxContainer" unique_id=1392984275 node_paths=PackedStringArray("AttackButton", "AbilityButton", "DefendButton", "NurtureButton", "ConfirmButton", "BackButton")]
 custom_minimum_size = Vector2(48, 48)
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,6 +21,8 @@ AttackButton = NodePath("AttackButton")
 AbilityButton = NodePath("AbilityButton")
 DefendButton = NodePath("DefendButton")
 NurtureButton = NodePath("NurtureButton")
+ConfirmButton = NodePath("ConfirmButton")
+BackButton = NodePath("BackButton")
 
 [node name="AttackButton" parent="." unique_id=912075206 instance=ExtResource("1_uubjt")]
 layout_mode = 2
@@ -38,3 +40,15 @@ text = "Defend"
 [node name="NurtureButton" parent="." unique_id=1476147055 instance=ExtResource("1_uubjt")]
 layout_mode = 2
 text = "Nurture"
+
+[node name="ConfirmButton" type="Button" parent="." unique_id=1227990829]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Confirm"
+
+[node name="BackButton" type="Button" parent="." unique_id=1558237404]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Back"
