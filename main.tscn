@@ -9,8 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://cpwsq3gn3ksxg" path="res://scenes/props/EnemyContainer.tscn" id="8_4c57u"]
 [ext_resource type="Resource" uid="uid://d3kjmc6wbt5u3" path="res://data/Reina.tres" id="8_w48qg"]
 [ext_resource type="Resource" uid="uid://do36iexpuhwdb" path="res://data/Demo_Enemy.tres" id="9_4c57u"]
+[ext_resource type="Script" uid="uid://da633vqnbkypc" path="res://scripts/Controllers/MiniGameController.gd" id="10_dg77c"]
 [ext_resource type="Script" uid="uid://oalsyulhfbf8" path="res://scripts/Controllers/UIManager.cs" id="10_efxa6"]
 [ext_resource type="Script" uid="uid://c6u2c2osoahnt" path="res://scripts/Controllers/GameController.cs" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://b7puntbuhntqv" path="res://scripts/MiniGames/MiniGameTemplate.gd" id="11_ycdy4"]
+[ext_resource type="Script" uid="uid://bbutimr2ri28c" path="res://scripts/MiniGames/WhiskersMiniGame.gd" id="14_w48qg"]
+[ext_resource type="Texture2D" uid="uid://cg2k1yc24o48i" path="res://icon.svg" id="15_vivmo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nq4bk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq4bk"]
 
 [node name="Node2D" type="Node2D" unique_id=47224301]
 
@@ -202,9 +210,100 @@ Controller = NodePath("../GameController")
 [node name="GameController" type="Control" parent="CanvasLayer" unique_id=1112182627 node_paths=PackedStringArray("BattleManager", "UIManager", "Menu")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 29.0
+offset_bottom = 29.0
 script = ExtResource("11_efxa6")
 BattleManager = NodePath("../Battle")
 UIManager = NodePath("../BattleUI")
 Menu = NodePath("../Battle/Options/Menu")
+
+[node name="MiniGameController" type="Control" parent="CanvasLayer" unique_id=106305215 node_paths=PackedStringArray("game_controler", "reina_minigame", "whiskers_minigame", "pedrolino_minigame", "baby_minigame")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_dg77c")
+game_controler = NodePath("../GameController")
+reina_minigame = NodePath("WhiskersMiniGame")
+whiskers_minigame = NodePath("ReinaMiniGame")
+pedrolino_minigame = NodePath("PedrolinoMiniGame")
+baby_minigame = NodePath("BabyMiniGame")
+
+[node name="MiniGameTemplate" parent="CanvasLayer/MiniGameController" unique_id=1907450269 instance=ExtResource("1_ig7tw")]
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("11_ycdy4")
+
+[node name="WhiskersMiniGame" parent="CanvasLayer/MiniGameController" unique_id=525937670 instance=ExtResource("1_ig7tw")]
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("14_w48qg")
+
+[node name="Ball" type="RigidBody2D" parent="CanvasLayer/MiniGameController/WhiskersMiniGame" unique_id=1817750911]
+position = Vector2(18, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/MiniGameController/WhiskersMiniGame/Ball" unique_id=574728603]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_nq4bk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/MiniGameController/WhiskersMiniGame/Ball" unique_id=839549231]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("15_vivmo")
+
+[node name="paddle" type="StaticBody2D" parent="CanvasLayer/MiniGameController/WhiskersMiniGame" unique_id=2083454678]
+position = Vector2(80, 75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/MiniGameController/WhiskersMiniGame/paddle" unique_id=1091847810]
+scale = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_nq4bk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/MiniGameController/WhiskersMiniGame/paddle" unique_id=2129760498]
+scale = Vector2(0.3, 0.09)
+texture = ExtResource("15_vivmo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer/MiniGameController/WhiskersMiniGame" unique_id=799237457]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/MiniGameController/WhiskersMiniGame/StaticBody2D" unique_id=2122735912]
+position = Vector2(24.802711, 16.879543)
+scale = Vector2(0.9972484, 0.997159)
+build_mode = 1
+polygon = PackedVector2Array(-24, -16, 135, -16, 135, 72, -24, 71)
+
+[node name="ReinaMiniGame" parent="CanvasLayer/MiniGameController" unique_id=1663305485 instance=ExtResource("1_ig7tw")]
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("11_ycdy4")
+
+[node name="PedrolinoMiniGame" parent="CanvasLayer/MiniGameController" unique_id=744288660 instance=ExtResource("1_ig7tw")]
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("11_ycdy4")
+
+[node name="BabyMiniGame" parent="CanvasLayer/MiniGameController" unique_id=2028669581 instance=ExtResource("1_ig7tw")]
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("11_ycdy4")

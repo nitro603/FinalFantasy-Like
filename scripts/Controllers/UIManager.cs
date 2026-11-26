@@ -80,7 +80,7 @@ public partial class UIManager : Control {
 	
 	public void TargetSelectionMode() {
 		Menu.Lock();
-		ShowEnemies();
+		ShowEnemies(); 
 	}
 	
 

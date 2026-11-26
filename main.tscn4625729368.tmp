@@ -1,0 +1,270 @@
+[gd_scene format=3 uid="uid://drfetdn81tuay"]
+
+[ext_resource type="Script" uid="uid://cu5qp745v7rla" path="res://scripts/Controllers/BattleManager.cs" id="1_4c57u"]
+[ext_resource type="PackedScene" uid="uid://dco2eyergd508" path="res://scenes/props/window_default.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c6sk481a4j4v" path="res://Menu.tscn" id="3_4c57u"]
+[ext_resource type="Resource" uid="uid://cxtff6xyhjuxc" path="res://data/Pedrolino.tres" id="5_4c57u"]
+[ext_resource type="PackedScene" uid="uid://dwrd2tqvlmnl1" path="res://scenes/props/TeamContainer.tscn" id="5_dg77c"]
+[ext_resource type="Resource" uid="uid://dg2kvxdypapyj" path="res://data/Whiskers.tres" id="6_efxa6"]
+[ext_resource type="PackedScene" uid="uid://cpwsq3gn3ksxg" path="res://scenes/props/EnemyContainer.tscn" id="8_4c57u"]
+[ext_resource type="Resource" uid="uid://d3kjmc6wbt5u3" path="res://data/Reina.tres" id="8_w48qg"]
+[ext_resource type="Resource" uid="uid://do36iexpuhwdb" path="res://data/Demo_Enemy.tres" id="9_4c57u"]
+[ext_resource type="Script" uid="uid://da633vqnbkypc" path="res://scripts/Combat/MiniGameController.gd" id="10_dg77c"]
+[ext_resource type="Script" uid="uid://oalsyulhfbf8" path="res://scripts/Controllers/UIManager.cs" id="10_efxa6"]
+[ext_resource type="Script" uid="uid://c6u2c2osoahnt" path="res://scripts/Controllers/GameController.cs" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://b7puntbuhntqv" path="res://scenes/props/MiniGameTemplate.gd" id="11_ycdy4"]
+
+[node name="Node2D" type="Node2D" unique_id=47224301]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=373789733]
+layer = 0
+
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=812856029]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0147748655, 0.22719407, 0.37185988, 1)
+
+[node name="Battle" type="Control" parent="CanvasLayer" unique_id=1899893825]
+texture_filter = 1
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_4c57u")
+
+[node name="Bottom" type="BoxContainer" parent="CanvasLayer/Battle" unique_id=2127217993]
+custom_minimum_size = Vector2(200, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Enemies" parent="CanvasLayer/Battle/Bottom" unique_id=893566477 instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+
+[node name="Players" parent="CanvasLayer/Battle/Bottom" unique_id=1605764764 instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+
+[node name="Options" parent="CanvasLayer/Battle" unique_id=663590252 instance=ExtResource("1_ig7tw")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -48.0
+offset_right = -215.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_stretch_ratio = 2.0
+
+[node name="Menu" parent="CanvasLayer/Battle/Options" unique_id=1392984275 instance=ExtResource("3_4c57u")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 53.0
+offset_bottom = 51.0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+
+[node name="Team" type="Control" parent="CanvasLayer/Battle" unique_id=663770974]
+anchors_preset = 0
+offset_left = 173.0
+offset_top = 9.0
+offset_right = 330.0
+offset_bottom = 123.0
+
+[node name="PanelContainer" parent="CanvasLayer/Battle/Team" unique_id=571243705 instance=ExtResource("5_dg77c")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3312102
+anchor_top = -0.04385965
+anchor_right = 0.73453826
+anchor_bottom = 0.6949317
+offset_left = 0.0
+offset_top = -8.0
+offset_right = -21.32251
+offset_bottom = -42.222214
+grow_horizontal = 1
+grow_vertical = 1
+Data = ExtResource("5_4c57u")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer2" parent="CanvasLayer/Battle/Team" unique_id=1376720538 instance=ExtResource("5_dg77c")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2356688
+anchor_top = 0.31578946
+anchor_right = 0.2356688
+anchor_bottom = 0.3859649
+offset_left = 0.0
+offset_top = -8.0
+offset_right = 42.0
+offset_bottom = 34.0
+grow_horizontal = 1
+grow_vertical = 1
+Data = ExtResource("8_w48qg")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer3" parent="CanvasLayer/Battle/Team" unique_id=617812516 instance=ExtResource("5_dg77c")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07643312
+anchor_top = 0.22807017
+anchor_right = 0.07643312
+anchor_bottom = 0.22807017
+offset_left = 50.0
+offset_top = 37.0
+offset_right = 92.0
+offset_bottom = 87.0
+grow_horizontal = 1
+grow_vertical = 1
+Data = ExtResource("6_efxa6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Enemies" type="Control" parent="CanvasLayer/Battle" unique_id=1838724649]
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 9.0
+offset_right = 67.0
+offset_bottom = 49.0
+
+[node name="PanelContainer" parent="CanvasLayer/Battle/Enemies" unique_id=1860379664 instance=ExtResource("8_4c57u")]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 32.0
+offset_right = 59.0
+offset_bottom = 82.0
+Data = ExtResource("9_4c57u")
+
+[node name="PanelContainer2" parent="CanvasLayer/Battle/Enemies" unique_id=2087337238 instance=ExtResource("8_4c57u")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -2.0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 57.0
+grow_horizontal = 1
+grow_vertical = 1
+Data = ExtResource("9_4c57u")
+
+[node name="PanelContainer3" parent="CanvasLayer/Battle/Enemies" unique_id=1983991596 instance=ExtResource("8_4c57u")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -5.0
+offset_top = 60.0
+offset_right = 37.0
+offset_bottom = 110.0
+grow_horizontal = 1
+grow_vertical = 1
+Data = ExtResource("9_4c57u")
+
+[node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=439213850 node_paths=PackedStringArray("BattleManager", "Menu", "Controller")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_efxa6")
+BattleManager = NodePath("../Battle")
+Menu = NodePath("../Battle/Options/Menu")
+Controller = NodePath("../GameController")
+
+[node name="GameController" type="Control" parent="CanvasLayer" unique_id=1112182627 node_paths=PackedStringArray("BattleManager", "UIManager", "Menu")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 29.0
+offset_bottom = 29.0
+script = ExtResource("11_efxa6")
+BattleManager = NodePath("../Battle")
+UIManager = NodePath("../BattleUI")
+Menu = NodePath("../Battle/Options/Menu")
+
+[node name="MiniGameController" type="Control" parent="CanvasLayer" unique_id=106305215 node_paths=PackedStringArray("game_controler")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_dg77c")
+game_controler = NodePath("../GameController")
+
+[node name="MiniGameTemplate" parent="CanvasLayer/MiniGameController" unique_id=1907450269 instance=ExtResource("1_ig7tw")]
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("11_ycdy4")
+
+[node name="ReinaMiniGame" parent="CanvasLayer/MiniGameController" unique_id=525937670 instance=ExtResource("1_ig7tw")]
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("11_ycdy4")
+
+[node name="WhiskersMiniGame" parent="CanvasLayer/MiniGameController" unique_id=1663305485 instance=ExtResource("1_ig7tw")]
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("11_ycdy4")
+
+[node name="PedrolinoMiniGame" parent="CanvasLayer/MiniGameController" unique_id=744288660 instance=ExtResource("1_ig7tw")]
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("11_ycdy4")
+
+[node name="BabyMiniGame" parent="CanvasLayer/MiniGameController" unique_id=2028669581 instance=ExtResource("1_ig7tw")]
+visible = false
+custom_minimum_size = Vector2(160, 90)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 190.0
+offset_bottom = 120.0
+script = ExtResource("11_ycdy4")
