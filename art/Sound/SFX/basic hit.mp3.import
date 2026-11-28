@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dacl0ds16chr3"
+path="res://.godot/imported/basic hit.mp3-6840ab6c0f69c12de3a4a53b6541ba22.mp3str"
+
+[deps]
+
+source_file="res://art/Sound/SFX/basic hit.mp3"
+dest_files=["res://.godot/imported/basic hit.mp3-6840ab6c0f69c12de3a4a53b6541ba22.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

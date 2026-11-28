@@ -7,8 +7,15 @@ public partial class TitleMenu : Control
 	public override void _Ready()
 	{
 		var flow = GetNode<GameFlow>("/root/GameFlow");
+		var audio = GetNode<AudioManager>("/root/AudioManager");
 
-		PlayButton.Pressed += flow.StartGame;
+		audio.PlayTitleMusic();
+
+		PlayButton.Pressed += () =>
+		{
+			//audio.PlayStart();
+			flow.StartGame();
+		};
 	   
 	}
 }

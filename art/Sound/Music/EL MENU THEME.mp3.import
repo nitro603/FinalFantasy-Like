@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dlm4nygewt4j3"
+path="res://.godot/imported/EL MENU THEME.mp3-43662c8103ff18650a31e27ec4ec0b56.mp3str"
+
+[deps]
+
+source_file="res://art/Sound/Music/EL MENU THEME.mp3"
+dest_files=["res://.godot/imported/EL MENU THEME.mp3-43662c8103ff18650a31e27ec4ec0b56.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

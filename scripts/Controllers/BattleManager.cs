@@ -5,7 +5,8 @@ using System.Linq;
 
 public partial class BattleManager : Node {
 	[Signal] public delegate void BattleEndedEventHandler(bool teamDefeated);
-	
+
+	private AudioManager Audio;
 	private TurnQueue Queue;
 	private List<Combatant> Team;
 	private List<Combatant> Enemies;
@@ -13,7 +14,8 @@ public partial class BattleManager : Node {
 
 	public override void _Ready() {
 		var combatants = FindChildren("*", "Node", true, false).OfType<Combatant>().ToList();
-
+		Audio = GetNode<AudioManager>("/root/AudioManager");
+		Audio.PlayBattleMusic();
 		Team = new List<Combatant>();
 		Enemies = new List<Combatant>();
 		GroupCombatants(combatants);
@@ -106,6 +108,7 @@ public partial class BattleManager : Node {
 		  GD.Print($"Combatant ({attacker.Data.Name}) attacks {target.Data.Name} for {result.Damage} Attack Points");
 	
 		  target.TakeDamage(result.Damage);
+		  Audio.PlayHit();
 
 		  if (target.Dead) {
 			 GD.Print($"{target.Data.Name} was defeated");

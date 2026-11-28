@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8r7h5cuyh337"
+path="res://.godot/imported/MOODY HEAL.mp3-4722c9e5300b30abe3ad842c1983242f.mp3str"
+
+[deps]
+
+source_file="res://art/Sound/SFX/MOODY HEAL.mp3"
+dest_files=["res://.godot/imported/MOODY HEAL.mp3-4722c9e5300b30abe3ad842c1983242f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

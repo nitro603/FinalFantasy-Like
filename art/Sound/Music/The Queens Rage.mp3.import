@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b10yha33nnm1i"
+path="res://.godot/imported/The Queens Rage.mp3-46c38e58a0c324d2a726393277c02210.mp3str"
+
+[deps]
+
+source_file="res://art/Sound/Music/The Queens Rage.mp3"
+dest_files=["res://.godot/imported/The Queens Rage.mp3-46c38e58a0c324d2a726393277c02210.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

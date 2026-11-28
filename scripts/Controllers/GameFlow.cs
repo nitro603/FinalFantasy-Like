@@ -3,7 +3,7 @@ using System;
 
 public partial class GameFlow : Node
 {
-	private const string BattleScene = "res://main.tscn";
+	private const string BattleScene = "res://scenes/MainScenes/main.tscn";
 
 	public void StartGame() => ChangeScene(BattleScene);
 

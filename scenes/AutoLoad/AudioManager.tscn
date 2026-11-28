@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dd7n02hal3baf"]
+
+[ext_resource type="Script" uid="uid://dba3ovjenkd11" path="res://scripts/Controllers/AudioManager.cs" id="1_7h5kj"]
+[ext_resource type="AudioStream" uid="uid://dlm4nygewt4j3" path="res://art/Sound/Music/EL MENU THEME.mp3" id="2_enwcm"]
+[ext_resource type="AudioStream" uid="uid://b10yha33nnm1i" path="res://art/Sound/Music/The Queens Rage.mp3" id="3_gb4tw"]
+[ext_resource type="AudioStream" uid="uid://dacl0ds16chr3" path="res://art/Sound/SFX/basic hit.mp3" id="4_7wre1"]
+
+[node name="AudioManager" type="Node" unique_id=56893877]
+script = ExtResource("1_7h5kj")
+TitleMusic = ExtResource("2_enwcm")
+BattleMusic = ExtResource("3_gb4tw")
+HitSound = ExtResource("4_7wre1")
