@@ -3,7 +3,6 @@ using Godot;
 public partial class TitleMenu : Control
 {
 	[Export] public Button PlayButton;
-	
 
 	public override void _Ready()
 	{

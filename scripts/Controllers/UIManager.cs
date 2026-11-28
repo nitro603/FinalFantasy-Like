@@ -28,9 +28,12 @@ public partial class UIManager : Control {
 		CurrentRange = 0;
 		
 		Controller.DecisionByPlayer += (character, action) => {
-			BattleManager.SetLivingTeam();
-			Team = BattleManager.GetTeam();
-			CurrentMember = Team.ElementAt(character);
+			var livingTeam = BattleManager.GetTeam().Where(member => !member.Dead).ToList();
+
+			if (character < 0 || character >= livingTeam.Count)
+				return;
+
+			CurrentMember = livingTeam[character];
 			TargetRange = CurrentMember.Data.TargetRange;
 			
 			string choice = action == 0 ? "Attack" : action == 1 ? "Ability" : action == 2 ? "Defend" : "Nurture";

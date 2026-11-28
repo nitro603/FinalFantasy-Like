@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -36,21 +35,21 @@ public partial class GameController : Node {
 	public void StartTurn() { 
 		Menu.ActionChosen += action => {
 			CurrentAction = action;
-			CurrentTeamMember = LivingTeam.ElementAt(CurrentPos);
+			GetLivingMembers();
+
+			CurrentTeamMember = LivingTeam[CurrentPos];
 
 			if (action == 0) {
 				UIManager.TargetSelectionMode();
 				targeting = true;
 			}
 			
-			GetLivingMembers();
-			
 			EmitSignal(SignalName.DecisionByPlayer, CurrentPos, action);
 			
 			if (!targeting) {
 				CurrentPos++;
 				if (CurrentPos == LivingTeam.Count) { 
-					BattleManager.StartRound();
+					BattleManager.StartBattle();
 					CurrentPos = 0; 
 				}
 			}
@@ -61,7 +60,7 @@ public partial class GameController : Node {
 			CurrentTeamMember.Decision = new BattleAction(CurrentAction, targets.ToList());
 			CurrentPos++;
 			if (CurrentPos == LivingTeam.Count) { 
-				BattleManager.StartRound();
+				BattleManager.StartBattle();
 				CurrentPos = 0; 
 			}
 			Debug.Print(CurrentPos.ToString());

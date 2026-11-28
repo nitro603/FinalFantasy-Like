@@ -15,4 +15,11 @@ public partial class GameFlow : Node
 			GD.PushError($"Could not load scene '{scenePath}': {error}");
 		}
 	}
+	public void RetryBattle()
+	{
+		Error error = GetTree().ReloadCurrentScene();
+
+		if (error != Error.Ok)
+			GD.PushError($"Could not reload the battle scene: {error}");
+	}
 }

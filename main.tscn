@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://do36iexpuhwdb" path="res://data/Demo_Enemy.tres" id="9_4c57u"]
 [ext_resource type="Script" uid="uid://oalsyulhfbf8" path="res://scripts/Controllers/UIManager.cs" id="10_efxa6"]
 [ext_resource type="Script" uid="uid://c6u2c2osoahnt" path="res://scripts/Controllers/GameController.cs" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://s0v7y0h31n8t" path="res://game_over_overlay.tscn" id="12_dg77c"]
 
 [node name="Node2D" type="Node2D" unique_id=47224301]
 
@@ -208,3 +209,7 @@ script = ExtResource("11_efxa6")
 BattleManager = NodePath("../Battle")
 UIManager = NodePath("../BattleUI")
 Menu = NodePath("../Battle/Options/Menu")
+
+[node name="GameOver_Overlay" parent="CanvasLayer" unique_id=672483883 node_paths=PackedStringArray("BattleManager", "BattleUI") instance=ExtResource("12_dg77c")]
+BattleManager = NodePath("../Battle")
+BattleUI = NodePath("../BattleUI")

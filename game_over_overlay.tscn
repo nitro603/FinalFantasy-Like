@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://s0v7y0h31n8t"]
+
+[ext_resource type="Script" uid="uid://gu0aw2niogr8" path="res://scripts/UI/GameOver_Overlay.cs" id="1_facph"]
+
+[node name="GameOver_Overlay" type="Control" unique_id=672483883 node_paths=PackedStringArray("MessageLabel", "RetryButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_facph")
+MessageLabel = NodePath("ColorRect/CenterContainer/PanelContainer/VBoxContainer/Label")
+RetryButton = NodePath("ColorRect/CenterContainer/PanelContainer/VBoxContainer/Button")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1059745582]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.16078432)
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=605598370]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect/CenterContainer" unique_id=1344068747]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer/PanelContainer" unique_id=1172430640]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/PanelContainer/VBoxContainer" unique_id=210120716]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Over"
+
+[node name="Button" type="Button" parent="ColorRect/CenterContainer/PanelContainer/VBoxContainer" unique_id=1470745946]
+layout_mode = 2
+text = "Retry?
+"

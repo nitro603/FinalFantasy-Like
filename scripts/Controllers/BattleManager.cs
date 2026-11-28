@@ -4,9 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 
 public partial class BattleManager : Node {
+	[Signal] public delegate void BattleEndedEventHandler(bool teamDefeated);
+	
 	private TurnQueue Queue;
 	private List<Combatant> Team;
 	private List<Combatant> Enemies;
+	private bool _battleEnded;
 
 	public override void _Ready() {
 		var combatants = FindChildren("*", "Node", true, false).OfType<Combatant>().ToList();
@@ -18,42 +21,53 @@ public partial class BattleManager : Node {
 		SetOpponents();
 
 		Queue = new TurnQueue(combatants);
-		//StartRound();
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
+	
 	public void StartBattle() {
-	}
+		if (FinishBattleIfOver())
+			return;
 
-	public void StartRound() {
-	   MakeEnemyDecisions();
-	   
-	   foreach (var attacker in Queue.CurrentTurnOrder.ToList()) {
-		  if (attacker.Decision.Action == 0) {
-			 if (BattleOver())
-				break;
-	
-			 if (attacker.Dead)
-				continue;
-	
-			 var targets = ResolveTargets(attacker);
-			 if (targets.Count == 0)   // ResolveTargets never returns null, so check for empty
+		MakeEnemyDecisions();
+
+		foreach (var character in Queue.CurrentTurnOrder.ToList())
+		{
+			if (FinishBattleIfOver())
+				return;
+
+			if (character.Decision.Action != 0 || character.Dead)
 				continue;
 
-			 BasicAttack(attacker, targets);
-		  }
-		  
-	   }
+			var targets = ResolveTargets(character);
+			if (targets.Count == 0)
+				continue;
 
-	   EndRound();
+			BasicAttack(character, targets);
+
+			// A final attack can end the battle immediately.
+			if (FinishBattleIfOver())
+				return;
+		}
+
+		EndRound();
 	}
 	
-	// Returns only targets that are still valid: alive and on the opposing side.
-	// If every chosen target is already dead, it redirects to a living opponent.
-	// The returned list never contains null, and is empty only when no opponents are left.
+	private bool FinishBattleIfOver()
+	{
+		if (_battleEnded)
+			return true;
+
+		bool teamDefeated = Team.Count == 0 || Team.All(member => member.Dead);
+		bool enemiesDefeated = Enemies.Count == 0 || Enemies.All(enemy => enemy.Dead);
+
+		if (!teamDefeated && !enemiesDefeated)
+			return false;
+
+		_battleEnded = true;
+		EmitSignal(SignalName.BattleEnded, teamDefeated);
+		return true;
+	}
+	
+
 	private List<Combatant> ResolveTargets(Combatant attacker) {
 	   var picked = attacker.Decision.Targets ?? new List<Combatant>();
 	   var opponents = (attacker.Data.Enemy ? Team : Enemies).Where(o => !o.Dead).ToList();
@@ -63,7 +77,7 @@ public partial class BattleManager : Node {
 		  .ToList();
 
 	   if (chosen.Count == 0 && opponents.Count > 0)
-		  chosen.Add(opponents[0]); // retarget (use a random one if you prefer)
+		  chosen.Add(opponents[0]); 
 
 	   return chosen;
 	}
@@ -105,9 +119,6 @@ public partial class BattleManager : Node {
 
 	public List<Combatant> GetEnemies() {
 		return Enemies;
-	}
-	public void SetLivingTeam() {
-		Team = Team.Where(member => !member.Dead).ToList();
 	}
 
 	private void MakeEnemyDecisions() {
