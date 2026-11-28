@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dnukhgxverfhi"]
+
+[ext_resource type="Script" uid="uid://b0bg0gnf1ihk6" path="res://scripts/UI/TitleMenu.cs" id="1_y8wkb"]
+[ext_resource type="Texture2D" uid="uid://lere1iba4sfw" path="res://art/UI/TitleMenu/Screenshot 2026-11-27 180132.png" id="2_1ug16"]
+
+[node name="TitleMenu" type="Control" unique_id=1581945011 node_paths=PackedStringArray("PlayButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y8wkb")
+PlayButton = NodePath("Button")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1586823455]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.39308554, 0.3930855, 0.39308548, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1532524527]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 95.0
+offset_right = -70.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1ug16")
+
+[node name="Button" type="Button" parent="." unique_id=84488542]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -45.0
+offset_right = 40.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Start"

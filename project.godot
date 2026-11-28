@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Final_Fantasy_Like"
-run/main_scene="uid://drfetdn81tuay"
+run/main_scene="uid://dnukhgxverfhi"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameFlow="*uid://c78xlu36ebw3y"
 
 [display]
 
